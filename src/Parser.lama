@@ -278,7 +278,7 @@ var ifExpr = memo $ eta syntax (loc=pos kIf cond_expr=exp kThen true_expr=scopeE
     pattern = memo $ eta syntax (
       x=decimal {fun (_) {returnST $ Const (stringInt (x))}} |
       s["_"] { fun (_) {returnST $ Wildcard}} |
-      ps=inbr[s ("["), list0 (syntax (p=pattern {p (0)})), s (")")] {
+      ps=inbr[s ("["), list0 (syntax (p=pattern {p (0)})), s ("]")] {
         fun (_) {chainST (ps) => fun (ps) {Array (ps)}}
       } |
       x=uident ps=inbr[s ("("), list0 (syntax (p=pattern {p (0)})), s (")")]? {
